@@ -7,11 +7,11 @@
 using namespace std;
 
 
-
+// Node structure definition for linked list
 struct Node{
-    double val;
-    string comment;
-    Node *next;
+    double val;         // Review rating    
+    string comment;     // Review comment
+    Node *next;         // Pointer to the nex node on the list
 };
 
 // Function protototypes
@@ -28,11 +28,11 @@ int main(){
     cout << "Which linked list method should we use? \n";
     cout << "\t[1] New nodes are added at the head of the linked list\n";
     cout << "\t[2] New nodes are added at the tail of the linked list\n";
-    // Input validation for choice
+    // Input validation for choice if numeric and within range
     while(true){
         cout << "Choice :";
         cin >> choice;
- 
+
         if (cin.fail() || choice < 1 || choice > 2){
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -59,21 +59,21 @@ int main(){
 void add_node_front(Node* &head){
     string choice = "";
     while (true){
-        Node *newNode = new Node;
-        newNode->val = getrating();
+        Node *newNode = new Node;   // Create a new node
+        newNode->val = getrating(); // Get the review rating from user
         cin.ignore();
-        newNode->comment = getcomment();
-        newNode->next = head;
-        head = newNode;
+        newNode->comment = getcomment(); // Get the review comment from user
+        newNode->next = head;   // Point new node to the current head
+        head = newNode;         // Update head to point to the new node
 
-        cout << "\nEnter another review? Y/N: ";
+        cout << "\nEnter another review? Y/N: "; // Prompt the user for more review input
         getline(cin, choice);
         if (choice == "N" || choice == "n"){
             break;
         }
     }
     cout << "\nOutputting all reviews:\n";
-    print_list(head);
+    print_list(head); // Print all reviews in the list
 }
 // add_node_tail() adds a new review node to the end of the linked list
 // arguments: &head reference to the head of the linked list
@@ -87,47 +87,51 @@ void add_node_tail (Node* &head){
         cin.ignore();
         newNode->comment = getcomment(); // Get the review comment from the user
 
-        if (!head){
-            head = newNode;
+        if (!head){             // Check if the list is empty
+            head = newNode;     // If empty, new node becomes the head
         }
         else{
-            Node* current = head;
-            while (current->next){
+            Node* current = head;   // Create new pointer to the head node
+            while (current->next){  // Travers the list until the last node
                 current = current->next;
             }
-            current->next = newNode;
+            current->next = newNode; // Link the last node to the new node
         }
-        cout << "\nEnter another review? Y/N: ";
+        cout << "\nEnter another review? Y/N: "; // Prompt the user for more review input
         getline(cin, choice);
         if (choice == "N" || choice == "n"){
             break;
         }
     }
     cout << "\nOutputting all reviews:\n";
-    print_list(head);
+    print_list(head); // Print all reviews in the list
 
 }
 
 void print_list(Node* &head){
-    double sum_review = 0;
-    if (!head){
+    double sum_review = 0;      
+    if (!head){         // Check if the list is empty
         cout << "\nThe list is empty";
-        return;
+        return;         // Exit the function if empty
     }
     int count = 1;
-    Node *current = head;
+    Node *current = head;   // Create pointer to the head of the list
     while (current){
         cout << "\tReview #" << count++ << " : " << current->val << " : " << current->comment << endl;
-        sum_review += current->val;
-        current = current->next;
+        sum_review += current->val;     // Accumulate the sum of review ratings
+        current = current->next;        // Move to the next node
     }
-    cout << "\tAverage : " << sum_review / count;
+    cout << "\tAverage : " << sum_review / count; // Calculate and print the average
     cout << endl;
 
 }
 
+// getrating() prompts the user for a review rating and validates the input
+// arguments: None
+// returns: the validated rating as a double
 double getrating(){
     double rating;
+    // Validate the input is number and within range
     while (true){
         cout << "Enter review rating 0-5: ";
         cin >> rating;
@@ -141,6 +145,9 @@ double getrating(){
         }
 }
 
+// getcomment() prompts the user for a review comment and returns it
+// arguments: none
+// returns: the user's comment as a string
 string getcomment(){
     string comment;
     cout << "Enter review comments: ";
