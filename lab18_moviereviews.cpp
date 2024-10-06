@@ -14,8 +14,11 @@ struct Node{
 };
 
 // Function protototypes
-void add_node_front(Node *&);
-void add_node_tail
+void add_node_front (Node *&);
+void add_node_tail (Node *&);
+double getrating();
+string getcomment();
+
 
 
 int main(){
@@ -32,8 +35,39 @@ int main(){
     switch(choice){
         case 1: add_node_front(head);
             break;
+        case 2: add_node_tail(head);
+            break;
+
+    }
+    
+    return 0;
+
+}
+
+// add_node_front() adds a new review node to the front of the linked list
+// arguments: &head reference to the head of the linked list
+// returns: nothing
+void add_node_front(Node* &head){
+    
+    while (true){
+        Node *newNode = new Node;
+        newNode->val = getrating();
 
     }
 
+}
+
+double getrating(){
+    double rating;
+    cout << "Enter review rating 0-5: ";
+    cin >> rating;
+    return rating;
+
+}
+
+string getcomment(){
+    double comment;
+    cout << "Enter review comments: ";
+    getline(cin, comment);
 
 }
