@@ -50,7 +50,7 @@ int main(){
 // arguments: &head reference to the head of the linked list
 // returns: nothing
 void add_node_front(Node* &head){
-    string choice;
+    string choice = "";
     while (true){
         Node *newNode = new Node;
         newNode->val = getrating();
@@ -58,7 +58,7 @@ void add_node_front(Node* &head){
         newNode->comment = getcomment();
         newNode->next = head;
         head = newNode;
-
+        cin.ignore();
         cout << "\nEnter another review? Y/N: ";
         getline(cin, choice);
         if (choice == "N" || choice == "n"){
@@ -70,6 +70,7 @@ void add_node_front(Node* &head){
 }
 
 void add_node_tail (Node* &head){
+    string choide =""
 
 }
 
@@ -84,8 +85,10 @@ void print_list(Node* &head){
     while (current){
         cout << "\tReview #" << count++ << " : " << current->val << " : " << current->comment << endl;
         sum_review += current->val;
+        current = current->next;
     }
-    cout << "Average :" << sum_review / count << endl;
+    cout << "Average :" << sum_review / count;
+    cout << endl;
 
 }
 
