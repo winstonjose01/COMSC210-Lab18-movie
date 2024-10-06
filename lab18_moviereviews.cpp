@@ -48,13 +48,25 @@ int main(){
 // arguments: &head reference to the head of the linked list
 // returns: nothing
 void add_node_front(Node* &head){
-    
+    string choice;
     while (true){
         Node *newNode = new Node;
         newNode->val = getrating();
+        cin.ignore();
+        newNode->comment = getcomment();
+        newNode->next = head;
+        head = newNode;
 
+        cout << "\nEnter another review? Y/N: ";
+        getline(cin, choice);
+        if (choice == "N" || choice == "n"){
+            break;
+        }
     }
+}
 
+void add_node_tail (Node* &head){
+    
 }
 
 double getrating(){
@@ -62,12 +74,11 @@ double getrating(){
     cout << "Enter review rating 0-5: ";
     cin >> rating;
     return rating;
-
 }
 
 string getcomment(){
-    double comment;
+    string comment;
     cout << "Enter review comments: ";
     getline(cin, comment);
-
+    return comment;
 }
