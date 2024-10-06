@@ -3,6 +3,7 @@
 // Github Link: https://github.com/winstonjose01/COMSC210-Lab18-movie 
 
 # include <iostream>
+# include <limits>
 using namespace std;
 
 
@@ -79,7 +80,7 @@ void add_node_tail (Node* &head){
         newNode->comment = getcomment();
 
         if (!head){
-            head - newNode;
+            head = newNode;
         }
         else{
             Node* current = head;
@@ -112,16 +113,24 @@ void print_list(Node* &head){
         sum_review += current->val;
         current = current->next;
     }
-    cout << "\tAverage :" << sum_review / count;
+    cout << "\tAverage : " << sum_review / count;
     cout << endl;
 
 }
 
 double getrating(){
     double rating;
-    cout << "Enter review rating 0-5: ";
-    cin >> rating;
-    return rating;
+    while (true){
+        cout << "Enter review rating 0-5: ";
+        cin >> rating;
+        if (cin.fail() || rating < 0 || rating > 5){
+            cin.clear();
+            cin.ignore(numeric_limits<std::streamsize>::max(),'\n');
+            cout << "\nInvalid input: Please enter number between 0-5\n";
+        }
+        else
+            return rating;
+        }
 }
 
 string getcomment(){
