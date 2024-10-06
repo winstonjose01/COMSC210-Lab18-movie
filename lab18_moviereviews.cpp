@@ -15,20 +15,20 @@ struct Node{
 };
 
 // Function protototypes
-void add_node_front (Node *&);
-void add_node_tail (Node *&);
-void print_list (Node *&);
-double getrating();
-string getcomment();
+void add_node_front (Node *&);  // Adds a new node at the front of the list  
+void add_node_tail (Node *&);   // Adds a new node at the tail of the list
+void print_list (Node *&);      // Prints all reviews in the list   
+double getrating();             // Prompts the user to input a rating review
+string getcomment();            // Propts the user to input a comment review
 
 
 int main(){
     Node *head = nullptr;   // Initialize the head of linked list
-    int choice;
+    int choice;             // Vaariable to store the user choice
     cout << "Which linked list method should we use? \n";
     cout << "\t[1] New nodes are added at the head of the linked list\n";
     cout << "\t[2] New nodes are added at the tail of the linked list\n";
-
+    // Input validation for choice
     while(true){
         cout << "Choice :";
         cin >> choice;
@@ -36,21 +36,21 @@ int main(){
         if (cin.fail() || choice < 1 || choice > 2){
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "\nInvalid input, select [1] or [2] only\n";
+            cout << "\nInvalid input, select [1] or [2] only\n"; // Prompt the user for a valid input
         }
         else{
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             switch(choice){
-                case 1: add_node_front(head);
+                case 1: add_node_front(head); // Add node to the front of the list
                     break;
-                case 2: add_node_tail(head);
+                case 2: add_node_tail(head);  // Add node to the tail of the list
                     break;
             }
-            break;
-        }
+            break; // Exit the loop after processing valid input
     }
     return 0;
 
+    }
 }
 
 // add_node_front() adds a new review node to the front of the linked list
@@ -75,15 +75,17 @@ void add_node_front(Node* &head){
     cout << "\nOutputting all reviews:\n";
     print_list(head);
 }
-
+// add_node_tail() adds a new review node to the end of the linked list
+// arguments: &head reference to the head of the linked list
+// returns: nothing
 void add_node_tail (Node* &head){
     string choice = "";
     while (true){
-        Node* newNode = new Node;
-        newNode->next = nullptr;
-        newNode->val = getrating();
+        Node* newNode = new Node;   // Create a new node
+        newNode->next = nullptr;    // Initialize the next ptr to the new node
+        newNode->val = getrating(); // Get the review rating from the user
         cin.ignore();
-        newNode->comment = getcomment();
+        newNode->comment = getcomment(); // Get the review comment from the user
 
         if (!head){
             head = newNode;
