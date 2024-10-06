@@ -63,10 +63,27 @@ void add_node_front(Node* &head){
             break;
         }
     }
+    cout << "\nOut"
 }
 
 void add_node_tail (Node* &head){
-    
+
+}
+
+void print_list(Node* &head){
+    double sum_review = 0;
+    if (!head){
+        cout << "\nThe list is empty";
+        return;
+    }
+    int count = 1;
+    Node *current = head;
+    while (current){
+        cout << "\tReview #" << count++ << " : " << current->val << " : " << current->comment << endl;
+        sum_review += current->val;
+    }
+    cout << "Average :" << sum_review / count << endl;
+
 }
 
 double getrating(){
