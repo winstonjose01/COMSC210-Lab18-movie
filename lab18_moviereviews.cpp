@@ -16,8 +16,10 @@ struct Node{
 // Function protototypes
 void add_node_front (Node *&);
 void add_node_tail (Node *&);
+void print_list (Node *&);
 double getrating();
 string getcomment();
+
 
 
 
@@ -63,7 +65,8 @@ void add_node_front(Node* &head){
             break;
         }
     }
-    cout << "\nOut"
+    cout << "\nOutputting all reviews:\n";
+    print_list(head);
 }
 
 void add_node_tail (Node* &head){
