@@ -58,7 +58,7 @@ void add_node_front(Node* &head){
         newNode->comment = getcomment();
         newNode->next = head;
         head = newNode;
-        cin.ignore();
+
         cout << "\nEnter another review? Y/N: ";
         getline(cin, choice);
         if (choice == "N" || choice == "n"){
@@ -70,7 +70,32 @@ void add_node_front(Node* &head){
 }
 
 void add_node_tail (Node* &head){
-    string choide =""
+    string choice = "";
+    while (true){
+        Node* newNode = new Node;
+        newNode->next = nullptr;
+        newNode->val = getrating();
+        cin.ignore();
+        newNode->comment = getcomment();
+
+        if (!head){
+            head - newNode;
+        }
+        else{
+            Node* current = head;
+            while (current->next){
+                current = current->next;
+            }
+            current->next = newNode;
+        }
+        cout << "\nEnter another review? Y/N: ";
+        getline(cin, choice);
+        if (choice == "N" || choice == "n"){
+            break;
+        }
+    }
+    cout << "\nOutputting all reviews:\n";
+    print_list(head);
 
 }
 
@@ -87,7 +112,7 @@ void print_list(Node* &head){
         sum_review += current->val;
         current = current->next;
     }
-    cout << "Average :" << sum_review / count;
+    cout << "\tAverage :" << sum_review / count;
     cout << endl;
 
 }
